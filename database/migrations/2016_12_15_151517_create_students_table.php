@@ -13,7 +13,9 @@ class CreateStudentsTable extends Migration
      */
     public function up()
     {
-        //
+        $sql = "CREATE TABLE students (id VARCHAR(7) NOT NULL," .
+            " name VARCHAR(50)) NOT NULL, batch VARCHAR(4), sex VARCHAR(6))";
+        DB::statement($sql);    // Errors here
     }
 
     /**
@@ -23,6 +25,6 @@ class CreateStudentsTable extends Migration
      */
     public function down()
     {
-        //
+        DB::statement('DROP TABLE students');
     }
 }
