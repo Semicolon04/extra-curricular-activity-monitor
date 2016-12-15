@@ -1,0 +1,56 @@
+students
+	• id - primary key, char(7), not null
+	• name - varchar(50), not null
+	• batch - char(4), not null
+	• Sex - varchar(6)
+
+staff
+	• id - primary(key) varchar(10), not null
+	• name - varchar(50), not null
+	• job_description - varchar(20)
+
+activities
+	• id - int, primary key, auto-increment, not null
+	• Title - varchar (100)
+	• description - text
+	• points - int, can be null
+	• student_id - char(7) foreign key, references id on students, not null
+	• validated_by - varchar(10), foreign key, references id on staff
+	• Activity_type - varchar(20) [one of 'clubs', 'competition' or 'sports'
+
+club_activities
+	• activity_id - int, foreign key references id on activities, not null
+	• club_name - varchar(50), not null
+	• positon - varchar(30)
+club_activity_projects
+	• activity_id - int, foreign key references id on activities, not null
+	• project_name - varchar(100), not null
+
+competition_activities
+	• activity_id - int, foreign key references id on activities, not null
+	• Competition_name - varchar(100), not null
+	• position - varchar(100)
+	• competition_organizer - varchar (50)
+
+sport_activities
+	• activity_id - int, foreign key references id on activities, not null
+	• sport_name - varchar(40), not null
+	• position - varchar(40)
+sport_events
+	• activity_id - int, foreign key references id on activities, not null
+	• event_name - varchar(40), not null
+	• place - varchar(10)
+
+awards
+	• activity_id - int, foreign key references id on activities, not null
+	• award_name - varchar(20)
+	• year - varchar(4)
+	• organization - varchar(20)
+
+types_of_activities
+	• ad - primary key, int, not null
+	• activiy_type - varchar(20), not null
+
+staff_type
+	• staff_id - varchar(20) foreign key references id on staff, not null
+    •type_id - int, foreign key references id on types_of_activities
