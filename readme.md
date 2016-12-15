@@ -7,5 +7,4 @@ Extra Curricular Activity Monitor: HoD Department of CSE is interested in buildi
 
 
 ## TODOs
-* Add "create table" statements in create_staff_table migration
-* Add "create table" statements in create_activities_table migration
+* Complete the "CREATE TABLE ..." statements in all the migrations

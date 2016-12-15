@@ -13,7 +13,11 @@ class CreateCompetitionActivitiesTable extends Migration
      */
     public function up()
     {
-        //
+        $sql = <<< SQL
+CREATE TABLE competition_activities(
+
+)
+SQL;
     }
 
     /**
@@ -23,6 +27,6 @@ class CreateCompetitionActivitiesTable extends Migration
      */
     public function down()
     {
-        //
+        DB::statement("DROP TABLE competition_activities");
     }
 }

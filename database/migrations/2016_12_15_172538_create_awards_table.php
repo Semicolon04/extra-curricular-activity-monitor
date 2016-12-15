@@ -13,7 +13,12 @@ class CreateAwardsTable extends Migration
      */
     public function up()
     {
-        //
+        $sql = <<< SQL
+CREATE TABLE awards(
+
+)
+SQL;
+        DB::statement($sql);
     }
 
     /**
@@ -23,6 +28,6 @@ class CreateAwardsTable extends Migration
      */
     public function down()
     {
-        //
+        DB::statement("DROP TABLE awards");
     }
 }

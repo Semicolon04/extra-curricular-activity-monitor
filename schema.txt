@@ -47,7 +47,7 @@ awards
 	• year - varchar(4)
 	• organization - varchar(20)
 
-types_of_activities
+activity_types
 	• ad - primary key, int, not null
 	• activiy_type - varchar(20), not null
 

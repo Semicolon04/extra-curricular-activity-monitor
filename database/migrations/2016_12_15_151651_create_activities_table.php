@@ -13,7 +13,12 @@ class CreateActivitiesTable extends Migration
      */
     public function up()
     {
-        //
+        $sql = <<< SQL
+CREATE TABLE activities (
+
+)
+SQL;
+        DB::statement($sql);
     }
 
     /**
@@ -23,6 +28,6 @@ class CreateActivitiesTable extends Migration
      */
     public function down()
     {
-        //
+        DB::statement('DROP TABLE activities');
     }
 }

@@ -13,7 +13,18 @@ class CreateClubActivitiesTable extends Migration
      */
     public function up()
     {
-        //
+        $sql = <<< SQL
+CREATE TABLE club_activities(
+
+)
+SQL;
+        DB::statement($sql);
+        $sql2 = <<< SQL
+CREATE TABLE club_activity_projects(
+
+)
+SQL;
+        DB::statement($sql2);
     }
 
     /**
@@ -23,6 +34,7 @@ class CreateClubActivitiesTable extends Migration
      */
     public function down()
     {
-        //
+        DB::statement("DROP TABLE club_activities");
+        DB::statement("DROP TABLE club_activity_projects");
     }
 }
