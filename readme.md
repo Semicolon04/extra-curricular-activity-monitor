@@ -8,3 +8,7 @@ Extra Curricular Activity Monitor: HoD Department of CSE is interested in buildi
 
 ## TODOs
 * Complete the "CREATE TABLE ..." statements in all the migrations
+
+##
+
+check commit
