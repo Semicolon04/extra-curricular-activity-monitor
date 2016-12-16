@@ -13,8 +13,9 @@ class CreateStaffTable extends Migration
      */
     public function up()
     {
-        $sql = SQL <<<
+        $sql =  <<<SQL
 CREATE TABLE staff(
+  
 
 )
 SQL;
@@ -28,6 +29,6 @@ SQL;
      */
     public function down()
     {
-        DB::statement("DROP TABLE staff")
+        DB::statement("DROP TABLE staff");
     }
 }
