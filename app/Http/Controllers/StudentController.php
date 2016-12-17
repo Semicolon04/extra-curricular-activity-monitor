@@ -8,11 +8,6 @@ use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $sql = "SELECT * FROM students "
@@ -48,7 +43,12 @@ class StudentController extends Controller
     }
     public function update(Request $request, $id)
     {
-        //
+        $sql = "UPDATE students SET id=?, name=?, batch=?, sex=?, email=?, address=?"
+            . " WHERE id=?";
+        $values = [$request->id, $request->name, $request->batch,
+            $request->sex, $request->email, $request->address, $id];
+        DB::update($sql, $values);
+        return redirect()->route('students.show', ['id' => id]);
     }
     public function destroy($id)
     {
