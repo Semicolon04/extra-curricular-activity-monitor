@@ -18,7 +18,7 @@ CREATE TABLE awards(
 
 )
 SQL;
-        DB::statement($sql);
+        // DB::statement($sql);
     }
 
     /**
@@ -28,6 +28,6 @@ SQL;
      */
     public function down()
     {
-        DB::statement("DROP TABLE awards");
+        // DB::statement("DROP TABLE awards");
     }
 }

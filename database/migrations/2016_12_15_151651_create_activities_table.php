@@ -24,7 +24,7 @@ CREATE TABLE activities (
   FOREIGN KEY(validatorId) REFERENCES staff(id)
 )
 SQL;
-        DB::statement($sql);
+        //DB::statement($sql);
     }
 
     /**
@@ -34,6 +34,6 @@ SQL;
      */
     public function down()
     {
-        DB::statement('DROP TABLE activities');
+        //DB::statement('DROP TABLE activities');
     }
 }

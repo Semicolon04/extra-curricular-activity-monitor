@@ -18,6 +18,7 @@ CREATE TABLE competition_activities(
 
 )
 SQL;
+        //DB::statement($sql);
     }
 
     /**
@@ -27,6 +28,6 @@ SQL;
      */
     public function down()
     {
-        DB::statement("DROP TABLE competition_activities");
+        //DB::statement("DROP TABLE competition_activities");
     }
 }

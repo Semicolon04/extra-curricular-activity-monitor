@@ -21,7 +21,7 @@ CREATE TABLE staff(
 
 )
 SQL;
-        DB::statement($sql);
+        //DB::statement($sql);
     }
 
     /**
@@ -31,6 +31,6 @@ SQL;
      */
     public function down()
     {
-        DB::statement("DROP TABLE staff");
+        //DB::statement("DROP TABLE staff");
     }
 }
