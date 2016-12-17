@@ -4,7 +4,8 @@
     <div class="col-md-offset-3 col-md-6">
         <h1>Create new student</h1>
         <br>
-        <form class="form">
+        <form class="form" method="POST" action={{route('students.store')}}>
+            {{csrf_field()}}
             <div class="form-group">
                 <label for="id">ID</label>
                 <input type="text" class="form-control" name="id">

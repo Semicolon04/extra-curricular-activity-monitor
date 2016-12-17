@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
@@ -35,7 +36,12 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $sql = "INSERT INTO students (id, name, batch, sex, email, address)"
+            . "VALUES (?, ?, ?, ?, ?, ?)";
+        $values = [$request->id, $request->name, $request->batch,
+            $request->sex, $request->email, $request->address];
+        DB::insert($sql, $values);
+        return redirect()->route('students.show', ['id' => $request->id]);
     }
 
     /**
@@ -80,6 +86,6 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::delete("DELETE FROM students WHERE id = ?", [$id]);
     }
 }
