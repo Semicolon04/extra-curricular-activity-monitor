@@ -39,12 +39,12 @@
 
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="text" class="form-control" name="email" value="{{$student->name}}">
+                <input type="text" class="form-control" name="email" value="{{$student->email}}">
             </div>
 
             <div class="form-group">
                 <label for="address">Address</label>
-                <input type="text" class="form-control" name="address" value="{{$student->name}}">
+                <input type="text" class="form-control" name="address" value="{{$student->address}}">
             </div>
 
             <div class="form-group">
