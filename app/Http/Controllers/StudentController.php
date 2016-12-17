@@ -23,6 +23,14 @@ class StudentController extends Controller
     }
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'id' => ['required', 'unique:students', 'size:7'],
+            'name' => ['required', 'string'],
+            'batch' => ['required', 'size:4'],
+            'sex' => [],
+            'email' => ['email'],
+            'address' => []
+        ]);
         $sql = "INSERT INTO students (id, name, batch, sex, email, address)"
             . "VALUES (?, ?, ?, ?, ?, ?)";
         $values = [$request->id, $request->name, $request->batch,
@@ -43,12 +51,21 @@ class StudentController extends Controller
     }
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'id' => ['required', 'size:7'],
+            'name' => ['required', 'string'],
+            'batch' => ['required', 'size:4'],
+            'sex' => [],
+            'email' => ['email'],
+            'address' => []
+        ]);
+
         $sql = "UPDATE students SET id=?, name=?, batch=?, sex=?, email=?, address=?"
             . " WHERE id=?";
         $values = [$request->id, $request->name, $request->batch,
             $request->sex, $request->email, $request->address, $id];
         DB::update($sql, $values);
-        return redirect()->route('students.show', ['id' => id]);
+        return redirect()->route('students.show', ['id' => $id]);
     }
     public function destroy($id)
     {

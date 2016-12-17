@@ -4,7 +4,7 @@
     <div class="col-md-offset-3 col-md-6">
         <h1>Create new student</h1>
         <br>
-        @include('errors')
+        @include('partials.errors')
         <form class="form" method="POST" action={{route('students.store')}}>
             {{csrf_field()}}
             <div class="form-group">
