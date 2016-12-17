@@ -24,7 +24,7 @@ activities
 club_activities
 	• activity_id - int, foreign key references id on activities, not null
 	• club_name - varchar(50), not null
-	• positon - varchar(30)
+	• post - varchar(30)
 club_activity_projects
 	• activity_id - int, foreign key references id on activities, not null
 	• project_name - varchar(100), not null
