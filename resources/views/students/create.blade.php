@@ -4,16 +4,17 @@
     <div class="col-md-offset-3 col-md-6">
         <h1>Create new student</h1>
         <br>
+        @include('errors')
         <form class="form" method="POST" action={{route('students.store')}}>
             {{csrf_field()}}
             <div class="form-group">
                 <label for="id">ID</label>
-                <input type="text" class="form-control" name="id">
+                <input type="text" class="form-control" name="id" value="{{old('id')}}">
             </div>
 
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" name="name">
+                <input type="text" class="form-control" name="name" value="{{old('name')}}">
             </div>
 
             <div class="form-group">
@@ -37,12 +38,12 @@
 
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="text" class="form-control" name="email">
+                <input type="text" class="form-control" name="email" value="{{old('email')}}">
             </div>
 
             <div class="form-group">
                 <label for="address">Address</label>
-                <input type="text" class="form-control" name="address">
+                <input type="text" class="form-control" name="address" value="{{old('address')}}">
             </div>
 
             <div class="form-group">
