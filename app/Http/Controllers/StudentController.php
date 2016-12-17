@@ -15,25 +15,17 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        $sql = "SELECT * FROM students "
+            . "JOIN SUM(points) FROM activities GROUP BY student_id "
+            . "ON students.id = activities.student_id";
+        $sql = "SELECT * FROM students"; // Use this until activity table is ready
+        $result = DB::select($sql);
+        return view('students.index', ['students' => $result]);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('students.create');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $sql = "INSERT INTO students (id, name, batch, sex, email, address)"
@@ -44,46 +36,19 @@ class StudentController extends Controller
         return redirect()->route('students.show', ['id' => $request->id]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         DB::delete("DELETE FROM students WHERE id = ?", [$id]);
