@@ -19,7 +19,7 @@ CREATE TABLE activities (
   title VARCHAR(30) NOT NULL,
   description VARCHAR(300),
   validatorId VARCHAR(7),
-  studentId VARCHAR(7),
+  studentId VARCHAR(7) NOT NULL,
   FOREIGN KEY(studentId) REFERENCES students(id),
   FOREIGN KEY(validatorId) REFERENCES staff(id)
 )
