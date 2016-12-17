@@ -16,6 +16,7 @@ activities
 	• id - int, primary key, auto-increment, not null
 	• title - varchar (100)
 	• description - text
+	• year - varchar(4)
 	• points - int, can be null
 	• student_id - char(7) foreign key, references id on students, not null
 	• validated_by - varchar(10), foreign key, references id on staff
