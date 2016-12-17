@@ -18,7 +18,7 @@ CREATE TABLE activities (
 
 )
 SQL;
-        DB::statement($sql);
+        //DB::statement($sql);
     }
 
     /**
@@ -28,6 +28,6 @@ SQL;
      */
     public function down()
     {
-        DB::statement('DROP TABLE activities');
+        //DB::statement('DROP TABLE activities');
     }
 }

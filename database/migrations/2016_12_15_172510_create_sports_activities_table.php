@@ -18,13 +18,13 @@ CREATE TABLE sports_activities(
 
 )
 SQL;
-        DB::statement($sql);
+        // DB::statement($sql);
         $sql2 = <<< SQL
 CREATE TABLE sport_events(
 
 )
 SQL;
-        DB::statement($sql2);
+        // DB::statement($sql2);
     }
 
     /**
@@ -34,7 +34,7 @@ SQL;
      */
     public function down()
     {
-        DB::statement("DROP TABLE sports_activities");
-        DB::statement("DROP TABLE sport_events");
+        // DB::statement("DROP TABLE sports_activities");
+        // DB::statement("DROP TABLE sport_events");
     }
 }

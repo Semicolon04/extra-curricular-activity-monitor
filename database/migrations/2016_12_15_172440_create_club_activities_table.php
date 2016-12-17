@@ -18,13 +18,13 @@ CREATE TABLE club_activities(
 
 )
 SQL;
-        DB::statement($sql);
+        //DB::statement($sql);
         $sql2 = <<< SQL
 CREATE TABLE club_activity_projects(
 
 )
 SQL;
-        DB::statement($sql2);
+        //DB::statement($sql2);
     }
 
     /**
@@ -34,7 +34,7 @@ SQL;
      */
     public function down()
     {
-        DB::statement("DROP TABLE club_activities");
-        DB::statement("DROP TABLE club_activity_projects");
+        //DB::statement("DROP TABLE club_activities");
+        //DB::statement("DROP TABLE club_activity_projects");
     }
 }

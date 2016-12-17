@@ -18,7 +18,9 @@ CREATE TABLE students (
     id VARCHAR(7) PRIMARY KEY NOT NULL,
     name VARCHAR(50) NOT NULL,
     batch VARCHAR(4),
-    sex VARCHAR(6)
+    sex VARCHAR(6),
+    email VARCHAR(50),
+    address VARCHAR(100)
 )
 SQL;
         DB::statement($sql);
