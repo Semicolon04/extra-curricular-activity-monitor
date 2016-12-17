@@ -15,7 +15,9 @@ class CreateStaffTable extends Migration
     {
         $sql =  <<<SQL
 CREATE TABLE staff(
-
+  id VARCHAR(7) PRIMARY KEY NOT NULL,
+  name VARCHAR(30) NOT NULL,
+  job_description VARCHAR(50)
 
 )
 SQL;
