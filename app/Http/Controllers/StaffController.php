@@ -10,7 +10,7 @@ class StaffController extends Controller
     public function index()
     {
         $result = DB::select('SELECT * FROM staff');
-        return view('staff.index', ['staff' => $result])
+        return view('staff.index', ['staff' => $result]);
     }
     public function create()
     {
@@ -18,11 +18,24 @@ class StaffController extends Controller
     }
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'id' => ['required', 'unique:staff'],
+            'name' => ['required', 'string'],
+            'email' => ['email'],
+            'job_description' => []
+        ]);
+        $sql = "INSERT INTO staff (id, name, job_description, email)"
+            . "VALUES (?, ?, ?, ?)";
+        $values = [$request->id, $request->name, $request->job_description,
+            $request->email];
+        DB::insert($sql, $values);
+
+        // TODO: Populate staff_type table based on checkbox inputs
+        return redirect()->route('staff.show', ['id' => $request->id]);
     }
     public function show($id)
     {
-        //
+        
     }
     public function edit($id)
     {
