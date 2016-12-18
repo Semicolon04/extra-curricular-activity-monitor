@@ -23,11 +23,11 @@ class StaffController extends Controller
             'id' => ['required', 'unique:staff'],
             'name' => ['required', 'string'],
             'email' => ['email'],
-            'job_description' => []
+            'job_title' => []
         ]);
-        $sql = "INSERT INTO staff (id, name, job_description, email)"
+        $sql = "INSERT INTO staff (id, name, job_title, email)"
             . "VALUES (?, ?, ?, ?)";
-        $values = [$request->id, $request->name, $request->job_description,
+        $values = [$request->id, $request->name, $request->job_title,
             $request->email];
         DB::insert($sql, $values);
 

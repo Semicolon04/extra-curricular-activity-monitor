@@ -9,7 +9,7 @@ students
 staff
 	• id - primary(key) varchar(10), not null
 	• name - varchar(50), not null
-	• job_description - varchar(20)
+	• job_title - varchar(20)
 	• email - varchar(50)
 
 activities

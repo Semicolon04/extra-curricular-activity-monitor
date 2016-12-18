@@ -23,8 +23,8 @@
             </div>
 
             <div class="form-group">
-                <label for="job_description">Job Description</label>
-                <input type="text" class="form-control" name="job_description" value="{{old('job_description')}}">
+                <label for="job_title">Job Title</label>
+                <input type="text" class="form-control" name="job_title" value="{{old('job_title')}}">
             </div>
             <div class="form-group">
                 <label>Activity types</label>
