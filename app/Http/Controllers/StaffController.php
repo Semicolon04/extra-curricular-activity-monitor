@@ -45,7 +45,21 @@ class StaffController extends Controller
     }
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'id' => ['required'],
+            'name' => ['required', 'string'],
+            'email' => ['email'],
+            'job_title' => []
+        ]);
+
+        $sql = "UPDATE staff SET id=?, name=?, job_title=?, email=?"
+            . " WHERE id=?";
+        $values = [$request->id, $request->name, $request->job_title,
+            $request->email, $id];
+        DB::update($sql, $values);
+
+        // TODO: Update staff_types database
+        return redirect()->route('staff.show', ['id' => $id]);
     }
     public function destroy($id)
     {
