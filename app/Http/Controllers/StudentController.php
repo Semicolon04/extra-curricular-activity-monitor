@@ -41,7 +41,8 @@ class StudentController extends Controller
 
     public function show($id)
     {
-        //
+        $user = DB::table('students')->where('Id', $id)->first();
+        return View('students.show',['user'=>$user]);
     }
 
     public function edit($id)

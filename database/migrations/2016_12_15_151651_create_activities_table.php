@@ -34,6 +34,6 @@ SQL;
      */
     public function down()
     {
-        //DB::statement('DROP TABLE activities');
+        DB::statement('DROP TABLE activities');
     }
 }

@@ -34,7 +34,7 @@ SQL;
      */
     public function down()
     {
-        DB::statement("DROP TABLE activity_types");
-        DB::statement("DROP TABLE staff_type");
+        // DB::statement("DROP TABLE activity_types");
+        // DB::statement("DROP TABLE staff_type");
     }
 }
