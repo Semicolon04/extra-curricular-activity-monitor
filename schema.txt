@@ -34,7 +34,7 @@ club_activity_projects
 competition_activities
 	• activity_id - int, foreign key references id on activities, not null
 	• competition_name - varchar(100), not null
-	• position - varchar(100)
+	• position - varchar(20)
 	• competition_organizer - varchar (50)
 
 sport_activities

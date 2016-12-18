@@ -15,16 +15,22 @@ class CreateClubActivitiesTable extends Migration
     {
         $sql = <<< SQL
 CREATE TABLE club_activities(
-
+    activity_id INT NOT NULL,
+    club_name VARCHAR(50) NOT NULL,
+    post VARCHAR(30),
+    FOREIGN KEY(activity_id) REFERENCES activities(id)
 )
 SQL;
-        //DB::statement($sql);
+        DB::statement($sql);
         $sql2 = <<< SQL
 CREATE TABLE club_activity_projects(
-
+    activity_id INT NOT NULL,
+    project_name VARCHAR(100) NOT NULL,
+    contribution_description TEXT,
+    FOREIGN KEY(activity_id) REFERENCES activities(id)
 )
 SQL;
-        //DB::statement($sql2);
+        DB::statement($sql2);
     }
 
     /**
@@ -34,7 +40,7 @@ SQL;
      */
     public function down()
     {
-        //DB::statement("DROP TABLE club_activities");
-        //DB::statement("DROP TABLE club_activity_projects");
+        DB::statement("DROP TABLE club_activities");
+        DB::statement("DROP TABLE club_activity_projects");
     }
 }

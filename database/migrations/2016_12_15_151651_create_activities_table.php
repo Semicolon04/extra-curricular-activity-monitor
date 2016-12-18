@@ -15,16 +15,19 @@ class CreateActivitiesTable extends Migration
     {
         $sql = <<< SQL
 CREATE TABLE activities (
-  id VARCHAR(7) PRIMARY KEY NOT NULL,
-  title VARCHAR(30) NOT NULL,
-  description VARCHAR(300),
-  validator_id VARCHAR(7),
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  title VARCHAR(100) NOT NULL,
+  description TEXT,
+  year VARCHAR(4),
   student_id VARCHAR(7) NOT NULL,
-  FOREIGN KEY(studentId) REFERENCES students(id),
-  FOREIGN KEY(validatorId) REFERENCES staff(id)
+  validated_by VARCHAR(10),
+  points INT,
+  activity_type VARCHAR(20),
+  FOREIGN KEY(student_id) REFERENCES students(id),
+  FOREIGN KEY(validated_by) REFERENCES staff(id)
 )
 SQL;
-        //DB::statement($sql);
+        DB::statement($sql);
     }
 
     /**

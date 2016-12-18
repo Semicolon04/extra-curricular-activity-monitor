@@ -15,10 +15,14 @@ class CreateCompetitionActivitiesTable extends Migration
     {
         $sql = <<< SQL
 CREATE TABLE competition_activities(
-
+    activity_id INT NOT NULL,
+    competition_name VARCHAR(100) NOT NULL,
+    position VARCHAR(20),
+    competition_organizer VARCHAR(50),
+    FOREIGN KEY(activity_id) REFERENCES activities(id)
 )
 SQL;
-        //DB::statement($sql);
+        DB::statement($sql);
     }
 
     /**
@@ -28,6 +32,6 @@ SQL;
      */
     public function down()
     {
-        //DB::statement("DROP TABLE competition_activities");
+        DB::statement("DROP TABLE competition_activities");
     }
 }
