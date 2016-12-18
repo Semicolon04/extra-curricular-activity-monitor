@@ -15,10 +15,13 @@ class CreateAwardsTable extends Migration
     {
         $sql = <<< SQL
 CREATE TABLE awards(
-
+    activity_id INT NOT NULL,
+    year VARCHAR(4),
+    organization VARCHAR(20),
+    FOREIGN KEY(activity_id) REFERENCES activities(id)
 )
 SQL;
-        // DB::statement($sql);
+        DB::statement($sql);
     }
 
     /**
@@ -28,6 +31,6 @@ SQL;
      */
     public function down()
     {
-        // DB::statement("DROP TABLE awards");
+        DB::statement("DROP TABLE awards");
     }
 }
