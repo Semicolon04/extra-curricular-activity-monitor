@@ -15,13 +15,13 @@ class CreateStaffTable extends Migration
     {
         $sql =  <<<SQL
 CREATE TABLE staff(
-  id VARCHAR(7) PRIMARY KEY NOT NULL,
-  name VARCHAR(30) NOT NULL,
-  job_description VARCHAR(50)
-
+  id VARCHAR(10) PRIMARY KEY NOT NULL,
+  name VARCHAR(50) NOT NULL,
+  job_title VARCHAR(20),
+  email VARCHAR(50)
 )
 SQL;
-        //DB::statement($sql);
+        DB::statement($sql);
     }
 
     /**
@@ -31,6 +31,6 @@ SQL;
      */
     public function down()
     {
-        //DB::statement("DROP TABLE staff");
+        DB::statement("DROP TABLE staff");
     }
 }
