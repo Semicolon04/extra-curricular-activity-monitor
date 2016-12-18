@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class StaffController extends Controller
 {
@@ -35,7 +36,7 @@ class StaffController extends Controller
     }
     public function show($id)
     {
-        
+
     }
     public function edit($id)
     {
