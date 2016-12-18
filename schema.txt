@@ -20,7 +20,7 @@ activities
 	• points - int, can be null
 	• student_id - char(7) foreign key, references id on students, not null
 	• validated_by - varchar(10), foreign key, references id on staff
-	• activity_type - varchar(20) [one of 'clubs', 'competition' or 'sports'
+	• activity_type - varchar(20) [one of 'club', 'competition' or 'sport'
 
 club_activities
 	• activity_id - int, foreign key references id on activities, not null
