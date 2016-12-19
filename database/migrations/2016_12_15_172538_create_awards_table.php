@@ -16,6 +16,7 @@ class CreateAwardsTable extends Migration
         $sql = <<< SQL
 CREATE TABLE awards(
     activity_id INT NOT NULL,
+    award_name VARCHAR(20),
     year VARCHAR(4),
     organization VARCHAR(20),
     FOREIGN KEY(activity_id) REFERENCES activities(id)
