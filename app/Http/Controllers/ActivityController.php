@@ -98,6 +98,16 @@ class ActivityController extends Controller
                 $activity_id];
             DB::update($sql, $values);
             // update values to club_projects
+            DB::delete("DELETE FROM club_activity_projects WHERE activity_id = ?",
+                [$activity_id]);
+            foreach($input_data['projects'] as $club_activity) {
+                $sql = "INSERT INTO club_activity_projects "
+                    . "(activity_id, project_name, contribution_description) "
+                    . " VALUES (?, ?, ?)";
+                $values = [$activity_id, $club_activity['project_name'],
+                    $club_activity['contribution_description']];
+                DB::insert($sql, $values);
+            }
         } else if ($activity_type == 'competition') {
             $sql = "UPDATE competition_activities SET competition_name = ?, "
                 . "position = ?, competition_organizer = ?"
@@ -112,6 +122,14 @@ class ActivityController extends Controller
                 $activity_id];
             DB::update($sql, $values);
             // update sport evetns
+            DB::delete("DELETE FROM sport_events WHERE activity_id = ?",
+                [$activity_id]);
+            foreach($input_data['events'] as $event) {
+                $sql = "INSERT INTO sport_events "
+                    . "(activity_id, event_name, place) VALUES (?, ?, ?)";
+                $values = [$activity_id, $event['event_name'], $event['place']];
+                DB::insert($sql, $values);
+            }
         }
     }
     public function deleteActivity($activity_id) {
