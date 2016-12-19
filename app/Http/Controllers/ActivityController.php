@@ -18,7 +18,6 @@ class ActivityController extends Controller
         $values = [$input_data['title'], $input_data['description'],
             $input_data['year'], $input_data['student_id'],
             $input_data['activity_type']];
-        // var_dump($values);
         DB::insert($sql, $values);
 
         $activity_id = json_decode(json_encode(DB::select("SELECT id FROM activities ORDER BY id DESC LIMIT 1;")), True)[0]['id'];
@@ -28,7 +27,6 @@ class ActivityController extends Controller
                 . " organization) VALUES (?, ?, ?, ?)";
             $values = [$activity_id,$award['award_name'], $award['year'],
                 $award['organization']];
-              // var_dump($values);
             DB::insert($sql, $values);
         }
 
@@ -108,12 +106,18 @@ class ActivityController extends Controller
                 $input_data['competition_organizer'], $activity_id];
             DB::update($sql, $values);
         } else if ($activity_type == 'sport') {
-            $sql = "UPDATE sport_acvities SET sport_name = ?, position = ? "
+            $sql = "UPDATE sports_activities SET sport_name = ?, position = ? "
                 . "WHERE activity_id = ?";
             $values = [$input_data['sport_name'], $input_data['position'],
                 $activity_id];
             DB::update($sql, $values);
             // update sport evetns
+            foreach($input_data['events'] as $event) {
+                $sql = "INSERT INTO sport_events "
+                    . "(activity_id, event_name, place) VALUES (?, ?, ?)";
+                $values = [$activity_id, $event['event_name'], $event['place']];
+                DB::insert($sql, $values);
+            }
         }
     }
     public function deleteActivity($activity_id) {
