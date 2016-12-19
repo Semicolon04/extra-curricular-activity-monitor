@@ -26,22 +26,22 @@
 
         <div class="btn-group pull-right">
             <button class="btn btn-primary"
-                data-toggle="modal" data-target="#activity-modal">
+                data-toggle="modal" data-target="#new-activity">
                 Add Activity</button>
             <button class="btn btn-primary dropdown-toggle"
                 data-toggle="dropdown"><span class="caret"></span></button>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Club</a></li>
-                <li><a href="#">Competition</a></li>
-                <li><a href="#">Sports</a></li>
+                <li><a data-toggle-"modal" href="#new-club-activity">Club</a></li>
+                <li><a data-toggle-"modal" href="#new-competition">Competition</a></li>
+                <li><a data-toggle-"modal" href="#new-sports">Sports</a></li>
             </ul>
         </div>
         <h2>Add Activity</h2>
     </div>
 </div>
 
-<div class="modal fade" id="activity-modal" role="dialog">
-    <div class="modal-dialog">
+<div class="modal fade" id="new-activity" role="dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -63,8 +63,10 @@
                         <div class="col-sm-10"><input name="year" class="form-control" type="text"></div>
                     </div>
                 </form>
-                <button class="btn btn-primary pull-right">Add award</button>
+                <button class="btn btn-primary pull-right add-award">Add award</button>
                 <h4>Awards</h4>
+                <br><br><br>
+                <div class="award-fields"></div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -73,7 +75,9 @@
         </div>
     </div>
 </div>
+
 @endsection
 
 @section('scripts')
+<script src="/scripts/student_page.js"></script>
 @endsection
