@@ -21,14 +21,12 @@ class ActivityController extends Controller
         // var_dump($values);
         DB::insert($sql, $values);
 
-        $activity_id = DB::select("SELECT id FROM activities ORDER BY id DESC LIMIT 1;");
-        $array = json_decode(json_encode($activity_id), True);
-        // var_dump($array[0]['id']);
+        $activity_id = json_decode(json_encode(DB::select("SELECT id FROM activities ORDER BY id DESC LIMIT 1;")), True)[0]['id'];
         $activity_type = $input_data['activity_type'];
         foreach ($input_data['awards'] as $award) {
             $sql = "INSERT INTO awards (activity_id, award_name, year,"
                 . " organization) VALUES (?, ?, ?, ?)";
-            $values = [$array[0]['id'],$award['award_name'], $award['year'],
+            $values = [$activity_id,$award['award_name'], $award['year'],
                 $award['organization']];
               // var_dump($values);
             DB::insert($sql, $values);
@@ -38,7 +36,7 @@ class ActivityController extends Controller
         {
             $sql = "INSERT INTO club_activities (activity_id, club_name," .
                 " post) VALUES (?, ?, ?)";
-            $values = [$array[0]['id'], $input_data['club_name'],
+            $values = [$activity_id, $input_data['club_name'],
                 $input_data['post']];
             DB::insert($sql, $values);
             // insert values to club_projects
@@ -46,7 +44,7 @@ class ActivityController extends Controller
                 $sql = "INSERT INTO club_activity_projects "
                     . "(activity_id, project_name, contribution_description) "
                     . " VALUES (?, ?, ?)";
-                $values = [$array[0]['id'], $club_activity['project_name'],
+                $values = [$activity_id, $club_activity['project_name'],
                     $club_activity['contribution_description']];
                 DB::insert($sql, $values);
             }
@@ -56,7 +54,7 @@ class ActivityController extends Controller
             $sql = "INSERT INTO competition_activities (activity_id, "
                 . "competition_name, position, competition_organizer)"
                 . " VALUES (?, ?, ?, ?)";
-            $values = [$array[0]['id'], $input_data['competition_name'],
+            $values = [$activity_id, $input_data['competition_name'],
                 $input_data['position'], $input_data['competition_organizer']];
             DB::insert($sql, $values);
         }
@@ -64,14 +62,14 @@ class ActivityController extends Controller
         {
             $sql = "INSERT INTO sports_activities (activity_id, sport_name,"
                 . " position) VALUES (?, ?, ?)";
-            $values = [$array[0]['id'], $input_data['sport_name'],
+            $values = [$activity_id, $input_data['sport_name'],
                 $input_data['position']];
             DB::insert($sql, $values);
             // insert values to sport evetns
             foreach($input_data['events'] as $event) {
                 $sql = "INSERT INTO sport_events "
                     . "(activity_id, event_name, place) VALUES (?, ?, ?)";
-                $values = [$array[0]['id'], $event['event_name'], $event['place']];
+                $values = [$activity_id, $event['event_name'], $event['place']];
                 DB::insert($sql, $values);
             }
         }
