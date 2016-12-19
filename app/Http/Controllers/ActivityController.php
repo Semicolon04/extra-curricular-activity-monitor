@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Log;
 
 class ActivityController extends Controller
 {
     public function storeActivity(Request $request) {
         $input_data = $request->json()->all();
-
+        Log::info($input_data);
         $sql = "INSERT INTO activities"
             . " (title, description, year, student_id, activity_type)"
             . " VALUES (?, ?, ?, ?, ?)";
@@ -19,13 +20,12 @@ class ActivityController extends Controller
             $input_data['activity_type']];
         DB::insert($sql, $values);
 
-        $activity_id = DB::select("SELECT LAST_INSERT_ID()");
+        $activity_id = json_decode(json_encode(DB::select("SELECT id FROM activities ORDER BY id DESC LIMIT 1;")), True)[0]['id'];
         $activity_type = $input_data['activity_type'];
-
         foreach ($input_data['awards'] as $award) {
             $sql = "INSERT INTO awards (activity_id, award_name, year,"
                 . " organization) VALUES (?, ?, ?, ?)";
-            $values = [$activity_id, $award['award_name'], $award['year'],
+            $values = [$activity_id,$award['award_name'], $award['year'],
                 $award['organization']];
             DB::insert($sql, $values);
         }
@@ -33,9 +33,9 @@ class ActivityController extends Controller
         if ($activity_type == 'club')
         {
             $sql = "INSERT INTO club_activities (activity_id, club_name," .
-                " position) VALUES (?, ?, ?)";
+                " post) VALUES (?, ?, ?)";
             $values = [$activity_id, $input_data['club_name'],
-                $input_data['position']];
+                $input_data['post']];
             DB::insert($sql, $values);
             // insert values to club_projects
             foreach($input_data['projects'] as $club_activity) {
@@ -58,9 +58,9 @@ class ActivityController extends Controller
         }
         else if ($activity_type == 'sport')
         {
-            $sql = "INSERT INTO sport_acvities (activity_id, sport_name,"
+            $sql = "INSERT INTO sports_activities (activity_id, sport_name,"
                 . " position) VALUES (?, ?, ?)";
-            $values = [$activity_id, $input_data['sport_name']),
+            $values = [$activity_id, $input_data['sport_name'],
                 $input_data['position']];
             DB::insert($sql, $values);
             // insert values to sport evetns
@@ -94,7 +94,7 @@ class ActivityController extends Controller
         if ($activity_type == 'club') {
             $sql = "UPDATE club_activities SET club_name = ?, position = ?"
                 . " WhERE activity_id = ?";
-            $values = [$input_data['club_name'], $input_data['position']
+            $values = [$input_data['club_name'], $input_data['position'],
                 $activity_id];
             DB::update($sql, $values);
             // update values to club_projects
@@ -116,9 +116,9 @@ class ActivityController extends Controller
                 $input_data['competition_organizer'], $activity_id];
             DB::update($sql, $values);
         } else if ($activity_type == 'sport') {
-            $sql = "UPDATE sport_acvities SET sport_name = ?, position = ? "
+            $sql = "UPDATE sports_activities SET sport_name = ?, position = ? "
                 . "WHERE activity_id = ?";
-            $values = [$input_data['sport_name'], $input_data['position']
+            $values = [$input_data['sport_name'], $input_data['position'],
                 $activity_id];
             DB::update($sql, $values);
             // update sport evetns
