@@ -37,7 +37,22 @@
             </ul>
         </div>
         <h2>Activities</h2>
-		<div class="activities-view"></div>
+		<div class="activities-view">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Activity</th>
+						<th>Year</th>
+						<th>Type</th>
+						<th>Points</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- jquery adds rows here -->
+				</tbody>
+			</table>
+		</div>
     </div>
 </div>
 
@@ -58,4 +73,5 @@
 	var STUDENT_ID = '140592C'; // hardcoded for now
 </script>
 <script src="/scripts/student_page_add_activity.js"></script>
+<script src="/scripts/student_page_view_activities.js"></script>
 @endsection

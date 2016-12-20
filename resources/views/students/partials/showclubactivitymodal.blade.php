@@ -31,8 +31,8 @@
                 <table class="table" id="activity-projects">
                     <thead>
                         <tr>
-                            <th>Project Name<th>
-                            <th>Contribution<th>
+                            <th>Project Name</th>
+                            <th>Contribution</th>
                         </tr>
                     </thead>
                     <tbody>

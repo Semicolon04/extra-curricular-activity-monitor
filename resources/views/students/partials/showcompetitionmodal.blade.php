@@ -18,9 +18,9 @@
                 <table class="table" id="activity-awards">
                     <thead>
                         <tr>
-                            <th>Award Name<th>
-                            <th>Organization<th>
-                            <th>Year<th>
+                            <th>Award Name</th>
+                            <th>Organization</th>
+                            <th>Year</th>
                         </tr>
                     </thead>
                     <tbody>
