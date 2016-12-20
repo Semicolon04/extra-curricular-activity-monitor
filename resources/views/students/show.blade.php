@@ -37,6 +37,7 @@
             </ul>
         </div>
         <h2>Activities</h2>
+		<div class="activities-view"></div>
     </div>
 </div>
 

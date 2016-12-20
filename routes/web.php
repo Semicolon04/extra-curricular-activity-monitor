@@ -21,3 +21,4 @@ Route::resource('staff', 'StaffController');
 Route::post('activities', 'ActivityController@storeActivity');
 Route::patch('activities/{activity_id}','ActivityController@updateActivity');
 Route::delete('activities/{activity_id}', 'ActivityController@deleteActivity');
+Route::get('activities/{student_id}', 'ActivityController@getStudentsActivities');

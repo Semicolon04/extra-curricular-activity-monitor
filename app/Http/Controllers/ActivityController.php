@@ -155,5 +155,6 @@ class ActivityController extends Controller
     public function getStudentsActivities($student_id) {
         $data = DB::select("SELECT * FROM activities WHERE student_id = ?",
             [$student_id]);
+        return response()->json($data);
     }
 }

@@ -19,7 +19,15 @@ var eventForm = '<div class="container"><div class="form-group col-xs-5">' +
 '<label for="place">Place:</label>' +
 '<input type="text" class="form-control input-sm" name="place"></div>' +
 '<a class="col-xs-1 remove-event"><br>remove</a></div>';
+
+function reload_activities() {
+    $.get('/activities/' + STUDENT_ID, function(data, status) {
+        $('.activities-view').text(JSON.stringify(data, null, 10));
+    });
+
+}
 $(document).ready(function() {
+    reload_activities();
     $('.modal').on('hidden', function() {
         $.clearFormFields(this);
     })
@@ -71,6 +79,7 @@ $(document).ready(function() {
             complete: function(data, status) {
                 alert(JSON.stringify(data));
                 alert(JSON.stringify(status));
+                reload_activities();
             }
         });
         //alert(JSON.stringify(activityData));
@@ -117,6 +126,7 @@ $(document).ready(function() {
             complete: function(data, status) {
                 alert(JSON.stringify(data));
                 alert(JSON.stringify(status));
+                reload_activities();
             }
         });
 
@@ -156,6 +166,7 @@ $(document).ready(function() {
             complete: function(data, status) {
                 alert(JSON.stringify(data));
                 alert(JSON.stringify(status));
+                reload_activities();
             }
         });
 
@@ -201,6 +212,7 @@ $(document).ready(function() {
             complete: function(data, status) {
                 alert(JSON.stringify(data));
                 alert(JSON.stringify(status));
+                reload_activities();
             }
         });
 
