@@ -23,7 +23,7 @@ Route::patch('activities/{activity_id}','ActivityController@updateActivity');
 Route::delete('activities/{activity_id}', 'ActivityController@deleteActivity');
 
 Route::get('activities/all/{student_id}', 'ActivityController@getStudentsActivities');
+Route::get('activity/{activity_id}', 'ActivityController@getCompleteActivityDetails');
 // Route::get('activities/unvalidated/{type}', '');
-// Route::get('activites/{activity_id}/', '');
 //
 // Route::post('activities/validate/{activity_id}', '');

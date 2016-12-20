@@ -157,4 +157,38 @@ class ActivityController extends Controller
             [$student_id]);
         return response()->json($data);
     }
+    public function getCompleteActivityDetails($activity_id) {
+        $result = [];
+        $activity = DB::select('SELECT * FROM activities WHERE id = ?', [$activity_id])[0];
+        $result['title'] = $activity->title;
+        $result['description'] = $activity->description;
+        $result['year'] = $activity->year;
+        $result['points'] = $activity->points;
+        $result['activity_type'] = $activity->activity_type;
+        $result['student_id'] = $activity->student_id;
+        $result['id'] = $activity->id;
+        if ($activity->activity_type == 'club') {
+            $extra = DB::select("SELECT * FROM club_activities WHERE activity_id = ? ", [$activity_id])[0];
+            $result['club_name'] = $extra->club_name;
+            $result['post'] = $extra->post;
+            $sql = "SELECT project_name, contribution_description FROM "
+                . "club_activity_projects WHERE activity_id = ?";
+            $result['projects'] = DB::select($sql, [$activity_id]);
+        } else if ($activity->activity_type == 'competition') {
+            $extra = DB::select("SELECT * FROM competition_activities WHERE activity_id = ? ", [$activity_id])[0];
+            $result['competition_name'] = $extra->competition_name;
+            $result['competition_organizer'] = $extra->competition_organizer;
+            $result['position'] = $extra->position;
+        } else if ($activity->activity_type == 'sport') {
+            $extra = DB::select("SELECT * FROM sports_activities WHERE activity_id = ? ", [$activity_id])[0];
+            $result['sport_name'] = $extra->sport_name;
+            $result['position'] = $extra->position;
+            $sql = "SELECT event_name, place FROM "
+                . "sport_events WHERE activity_id = ?";
+            $result['events'] = DB::select($sql, [$activity_id]);
+        }
+        $sql = "SELECT award_name, organization, year FROM awards WHERE activity_id = ?";
+        $result['awards'] = DB::select($sql, [$activity_id]);
+        return response()->json($result);
+    }
 }
