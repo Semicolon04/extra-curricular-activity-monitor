@@ -46,6 +46,11 @@
 @include('students.partials.newcompetitionmodal')
 @include('students.partials.newsportsmodal')
 
+@include('students.partials.showactivitymodal')
+@include('students.partials.showclubactivitymodal')
+@include('students.partials.showcompetitionmodal')
+@include('students.partials.showsportsmodal')
+
 @endsection
 
 @section('scripts')

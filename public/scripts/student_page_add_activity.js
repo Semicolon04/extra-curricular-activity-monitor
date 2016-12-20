@@ -21,7 +21,7 @@ var eventForm = '<div class="container"><div class="form-group col-xs-5">' +
 '<a class="col-xs-1 remove-event"><br>remove</a></div>';
 
 function reload_activities() {
-    $.get('/activities/' + STUDENT_ID, function(data, status) {
+    $.get('/activities/all' + STUDENT_ID, function(data, status) {
         $('.activities-view').text(JSON.stringify(data, null, 10));
     });
 
