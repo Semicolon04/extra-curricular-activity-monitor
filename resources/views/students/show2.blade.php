@@ -41,9 +41,9 @@
 </div>
 
 @include('students.partials.newactvitymodal')
-@include('students\partials\newclubactivitymodal')
-@include('students\partials\newcompetitionmodal')
-@include('students\partials\newsportsmodal')
+@include('students.partials.newclubactivitymodal')
+@include('students.partials.newcompetitionmodal')
+@include('students.partials.newsportsmodal')
 
 @endsection
 
