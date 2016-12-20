@@ -70,7 +70,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button class="btn btn-primary">Add</button>
+                <button class="btn btn-primary" id="submit-activity-button">Add</button>
             </div>
         </div>
     </div>
@@ -79,5 +79,8 @@
 @endsection
 
 @section('scripts')
+<script>
+	var STUDENT_ID = '140592C'; // hardcoded for now
+</script>
 <script src="/scripts/student_page.js"></script>
 @endsection
