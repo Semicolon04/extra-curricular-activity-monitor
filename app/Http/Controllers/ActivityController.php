@@ -71,6 +71,7 @@ class ActivityController extends Controller
                 DB::insert($sql, $values);
             }
         }
+        return response()->json(['message' => 'updated sucessfully']);
     }
     public function updateActivity(Request $request, $activity_id) {
         $input_data = $request->json()->all();

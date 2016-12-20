@@ -54,14 +54,26 @@ $(document).ready(function() {
         var $awardFields = $('#new-activity').find('.award-fields');
         $awardFields.children().each(function() {
             awardDetail = {};
-            awardDetail.awardName = $(this).find("input[name='award_name']").val()
+            awardDetail.award_name = $(this).find("input[name='award_name']").val()
             awardDetail.year = $(this).find("input[name='year']").val();
             awardDetail.organization = $(this).find("input[name='organization']").val();
             activityData.awards.push(awardDetail);
         });
         activityData.activity_type = 'other';
         activityData.student_id = STUDENT_ID;    //global var assigned by php
-        alert(JSON.stringify(activityData));
+
+        $.ajax({
+            type: 'POST',
+            url: '/activities',
+            data: JSON.stringify(activityData),
+            contentType: 'application/json',
+            dataType: 'JSON',
+            complete: function(data, status) {
+                alert(JSON.stringify(data));
+                alert(JSON.stringify(status));
+            }
+        });
+        //alert(JSON.stringify(activityData));
 
         $("input, textarea").val("");
         $awardFields.empty();
@@ -79,7 +91,7 @@ $(document).ready(function() {
         var $awardFields = $('#new-club-activity').find('.award-fields');
         $awardFields.children().each(function() {
             awardDetail = {};
-            awardDetail.awardName = $(this).find("input[name='award_name']").val()
+            awardDetail.award_name = $(this).find("input[name='award_name']").val()
             awardDetail.year = $(this).find("input[name='year']").val();
             awardDetail.organization = $(this).find("input[name='organization']").val();
             activityData.awards.push(awardDetail);
@@ -95,7 +107,19 @@ $(document).ready(function() {
         });
         activityData.activity_type = 'club';
         activityData.student_id = STUDENT_ID;    //global var assigned by php
-        alert(JSON.stringify(activityData));
+
+        $.ajax({
+            type: 'POST',
+            url: '/activities',
+            data: JSON.stringify(activityData),
+            contentType: 'application/json',
+            dataType: 'JSON',
+            complete: function(data, status) {
+                alert(JSON.stringify(data));
+                alert(JSON.stringify(status));
+            }
+        });
+
         $('input, textarea').val("");
         $awardFields.empty();
         $projectFields.empty();
@@ -115,14 +139,26 @@ $(document).ready(function() {
         var $awardFields = $('#new-competition').find('.award-fields');
         $awardFields.children().each(function() {
             awardDetail = {};
-            awardDetail.awardName = $(this).find("input[name='award_name']").val()
+            awardDetail.award_name = $(this).find("input[name='award_name']").val()
             awardDetail.year = $(this).find("input[name='year']").val();
             awardDetail.organization = $(this).find("input[name='organization']").val();
             activityData.awards.push(awardDetail);
         });
         activityData.activity_type = 'competition';
         activityData.student_id = STUDENT_ID;    //global var assigned by php
-        alert(JSON.stringify(activityData));
+
+        $.ajax({
+            type: 'POST',
+            url: '/activities',
+            data: JSON.stringify(activityData),
+            contentType: 'application/json',
+            dataType: 'JSON',
+            complete: function(data, status) {
+                alert(JSON.stringify(data));
+                alert(JSON.stringify(status));
+            }
+        });
+
         $('input, textarea').val("");
         $awardFields.empty();
     });
@@ -140,7 +176,7 @@ $(document).ready(function() {
         var $awardFields = $('#new-sports').find('.award-fields');
         $awardFields.children().each(function() {
             awardDetail = {};
-            awardDetail.awardName = $(this).find("input[name='award_name']").val()
+            awardDetail.award_name = $(this).find("input[name='award_name']").val()
             awardDetail.year = $(this).find("input[name='year']").val();
             awardDetail.organization = $(this).find("input[name='organization']").val();
             activityData.awards.push(awardDetail);
@@ -155,7 +191,19 @@ $(document).ready(function() {
         });
         activityData.activity_type = 'sport';
         activityData.student_id = STUDENT_ID;    //global var assigned by php
-        alert(JSON.stringify(activityData));
+
+        $.ajax({
+            type: 'POST',
+            url: '/activities',
+            data: JSON.stringify(activityData),
+            contentType: 'application/json',
+            dataType: 'JSON',
+            complete: function(data, status) {
+                alert(JSON.stringify(data));
+                alert(JSON.stringify(status));
+            }
+        });
+
         $('input, textarea').val("");
         $awardFields.empty();
         $eventFields.empty();
