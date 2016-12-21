@@ -130,4 +130,7 @@ class StaffController extends Controller
         }, $types);
         return view('staff.validations', ['types'=> $types]);
     }
+    public function showSearch() {
+        return view('staff.search');
+    }
 }

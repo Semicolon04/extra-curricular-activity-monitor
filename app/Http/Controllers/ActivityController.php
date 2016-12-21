@@ -252,4 +252,17 @@ class ActivityController extends Controller
         $response = DB::select($sql, [$student_id])[0];
         return response()->json($response);
     }
+    public function search(Request $request) {
+        $input_data = $request->json()->all();
+        $categories = $input_data['categories'];
+        $categories = explode(',', $categories);
+        $categories = array_map(function($c) { return "'" . $c . "'"; }, $categories);
+        $categories = implode(',', $categories);
+        $year = $input_data['year'];
+        $title = $input_data['title'];
+        $sql = "SELECT * FROM activities WHERE title like '%$title%' "
+            . "AND year like '%$year%' type in ($categories)";
+        $results = DB::select($sql);
+        return response()->json($results);
+    }
 }
