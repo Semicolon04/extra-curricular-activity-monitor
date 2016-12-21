@@ -169,15 +169,22 @@ class ActivityController extends Controller
       }
     }
     public function deleteActivity($activity_id) {
-        DB::delete("DELETE FROM activities WHERE $id = ?", [$activity_id]);
-        DB::delete("DELETE FROM awards WHERE $activity_id = ?",
+        DB::beginTransaction();
+        DB::delete("DELETE FROM awards WHERE activity_id = ?",
             [$activity_id]);
-        DB::delete("DELETE FROM club_activities WHERE $activity_id = ?",
+        DB::delete("DELETE FROM club_activities WHERE activity_id = ?",
             [$activity_id]);
-        DB::delete("DELETE FROM competition_activities WHERE $activity_id = ?",
+        DB::delete("DELETE FROM club_activity_projects WHERE activity_id = ?",
             [$activity_id]);
-        DB::delete("DELETE FROM sport_acvities WHERE $activity_id = ?",
+        DB::delete("DELETE FROM competition_activities WHERE activity_id = ?",
             [$activity_id]);
+        DB::delete("DELETE FROM sports_activities WHERE activity_id = ?",
+            [$activity_id]);
+        DB::delete("DELETE FROM sports_events WHERE activity_id = ?",
+            [$activity_id]);
+        DB::delete("DELETE FROM activities WHERE id = ?", [$activity_id]);
+        DB::commit();
+        return response()->json(['message' => 'deleted sucessfully']);
     }
     public function validateActivity(Request $request, $activity_id) {
         $input_data = $request->json()->all();
