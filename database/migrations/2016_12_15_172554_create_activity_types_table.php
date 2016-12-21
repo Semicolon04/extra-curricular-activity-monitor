@@ -23,7 +23,7 @@ SQL;
 
         $sql2 = <<< SQL
 INSERT INTO activity_types VALUES
-(1, 'club'), (2, 'competition'), (3, 'sport')
+(1, 'club'), (2, 'competition'), (3, 'sport'), (4, 'other')
 SQL;
         DB::statement($sql2);
         $sql3 = <<< SQL
