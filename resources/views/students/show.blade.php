@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 @extends('master')
 
 @section('content')
@@ -65,7 +68,7 @@
 
 @section('scripts')
 <script>
-	var STUDENT_ID = '140592C'; // hardcoded for now
+	var STUDENT_ID = $_SESSION["login_user"]; 
 	function refresh_list() {
 		$('.activities-view').find('tbody').empty();
 		$.get('/activities/all/' + STUDENT_ID, function(data, status) {

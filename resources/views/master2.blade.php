@@ -8,7 +8,7 @@
     </head>
     <body>
 
-        @include('partials.navbar')
+        @include('partials.navbar2')
 
 
         @yield('content')

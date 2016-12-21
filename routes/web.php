@@ -1,5 +1,7 @@
 <?php
+use DB;
 
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,8 +14,30 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
+
+Route::post('/login', function (Request $request) {
+
+  $user = DB::select('SELECT * FROM students WHERE id = ?', [$request->username]);
+	if ($user != null) {
+    $user = $user[0];
+    $_SESSION["login_user"] = $user->id;
+		return redirect('students/'.$user->id);
+	} else {
+		var_dump('A user tried to log in as '. $request->username);
+    return response()->json(['message' => 'A user tried to log in as '. $request->username]);
+	}
+
+});
+
+Route::get('/logout',function(){
+  $_SESSION['login_user']=null;
+  return View('login');
+});
+
+
+
 
 Route::resource('students', 'StudentController');
 Route::resource('staff', 'StaffController');
