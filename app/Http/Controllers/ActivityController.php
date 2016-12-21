@@ -247,4 +247,9 @@ class ActivityController extends Controller
         $data = DB::select($sql);
         return response()->json($data);
     }
+    public function getTotalPoints($student_id) {
+        $sql = "SELECT SUM(points) as total_points FROM activities WHERE student_id = ? GROUP BY student_id";
+        $response = DB::select($sql, [$student_id])[0];
+        return response()->json($response);
+    }
 }

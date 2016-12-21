@@ -61,3 +61,5 @@ Route::get('activity/{activity_id}', 'ActivityController@getCompleteActivityDeta
 
 Route::get('activities/unvalidated/{types}', 'ActivityController@getUnvalidatedActivities');
 Route::post('activities/validate/{activity_id}', 'ActivityController@validateActivity');
+
+Route::get('points/{student_id}', 'ActivityController@getTotalPoints');

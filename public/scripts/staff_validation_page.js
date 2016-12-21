@@ -12,8 +12,8 @@ function refresh_list() {
 }
 function completeValidation(data, status) {
     alert(status);
-    alert(JSON.stringify(data));
-    alert(JSON.stringify(status));
+    // alert(JSON.stringify(data));
+    // alert(JSON.stringify(status));
     if (status == 'success') {
         $('.modal').modal('hide');
         refresh_list();
