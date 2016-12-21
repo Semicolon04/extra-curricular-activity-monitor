@@ -119,7 +119,7 @@ class StaffController extends Controller
         DB::delete("DELETE FROM staff WHERE id = ?", [$id]);
     }
     public function showActivitesToValidate() {
-        $id = '111111';         // get from the logged in user
+        $id = $_SESSION["login_user"];         // get from the logged in user
         $sql = "SELECT activity_types.activity_type FROM "
             . "staff_type JOIN activity_types "
             . "ON staff_type.type_id=activity_types.id "

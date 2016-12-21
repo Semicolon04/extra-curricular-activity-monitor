@@ -28,7 +28,7 @@ Route::post('/login', function (Request $request) {
 		return redirect('students/'.$user->id);
     }
     elseif (((string)$_SESSION["login_type"]) =='staff') {
-      	return redirect('staff/'.$user->id);
+      	return redirect('validate');
     }
 
     var_dump([$user->type][0]);

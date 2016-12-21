@@ -1,3 +1,11 @@
+<?php
+    if(!isset($_SESSION))
+    {
+        session_start();
+    }
+?>
+
+
 @extends('master')
 
 @section('content')
@@ -31,7 +39,7 @@
 
 @section('scripts')
 <script>
-    STAFF_ID = {{'111111'}};
+    STAFF_ID = '{{$_SESSION["login_user"]}}';
     STAFF_TYPES = [
         @foreach($types as $type)
         '{{$type}}',
