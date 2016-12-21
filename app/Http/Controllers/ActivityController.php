@@ -10,13 +10,18 @@ use Log;
 class ActivityController extends Controller
 {
     public function storeActivity(Request $request) {
-      DB::beginTransaction();
-      try{
+
         $input_data = $request->json()->all();
         $this->validate($request, [
-            'title' => 'required'
+            'title' => 'required',
+            'year' => 'required|size:4',
+            'description' => 'required',
+            'student_id' => 'required|size:7',
+            'activity_type'=> 'required',
+            'awards.*.year'=>'size:4'
         ]);
         DB::beginTransaction();
+        try{
         $sql = "INSERT INTO activities"
             . " (title, description, year, student_id, activity_type)"
             . " VALUES (?, ?, ?, ?, ?)";
@@ -80,7 +85,7 @@ class ActivityController extends Controller
         }
         DB::commit();
       }
-      catch (\Exception $e) {
+      catch (Exception $e) {
         DB::rollback();
     // something went wrong
   }
@@ -89,14 +94,26 @@ class ActivityController extends Controller
     public function updateActivity(Request $request, $activity_id) {
         $input_data = $request->json()->all();
 
+        $this->validate($request, [
+            'title' => 'required',
+            'year' => 'required|size:4',
+            'description' => 'required',
+            'student_id' => 'required|size:7',
+            'activity_type'=> 'required',
+            'awards.*.year'=>'size:4'
+        ]);
+
+
+        DB::beginTransaction();
+
+        try {
+
         $sql = "UPDATE activities SET title = ?, description = ?, year = ?, "
             . "validated_by = NULL, points = NULL WHERE id = ?";
         $values = [$input_data['title'], $input_data['description'],
             $input_data['year'], $activity_id];
         DB::update($sql, $values);
-
         $activity_type = $input_data['activity_type'];
-
         DB::delete("DELETE FROM awards WHERE activity_id = ?", [$activity_id]);
         foreach ($input_data['awards'] as $award) {
             $sql = "INSERT INTO awards (activity_id, award_name, year,"
@@ -144,7 +161,12 @@ class ActivityController extends Controller
                 $values = [$activity_id, $event['event_name'], $event['place']];
                 DB::insert($sql, $values);
             }
+
+            DB::commit();
         }
+      } catch (Exception $e) {
+        DB::rollback();
+      }
     }
     public function deleteActivity($activity_id) {
         DB::delete("DELETE FROM activities WHERE $id = ?", [$activity_id]);
