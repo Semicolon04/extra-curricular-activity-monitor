@@ -4,25 +4,20 @@
 <div class="container">
 	<div class="col-md-offset-1 col-md-10">
         <h1>{{$student->name}} <span class="pull-right">
-            {{$student->id}}</span></h1>
+            Total Points</span></h1>
 
-        <div class="panel panel-default">
-    		<div class="panel-heading">
-    			<div class="panel-title">
-    				Student Details
-    			</div>
-    		</div>
-    		<div class="panel-body">
-                <table class="table table-bordered">
-                    <tr><td>ID</td><td>{{ $student->id}}</td>
-                        <td>Name</td><td>{{ $student->name}}</td></tr>
-                    <tr><td>Batch</td><td>{{ $student->batch}}</td>
-                    <td>Sex</td><td>{{ $student->sex}}</td></tr>
-                    <tr><td>Email</td><td>{{ $student->email}}</td>
-                    <td>Address</td><td>{{ $student->address}}</td></tr>
-                </table>
-    		</div>
-        </div>
+		<br>
+		<h3>Student Details</h3>
+		<a class="btn btn-primary btn-xs pull-right" href="/students/{{$student->id}}/edit">Edit Detalils</a>
+
+        <table class="table">
+            <tr><td>ID</td><td>{{ $student->id}}</td>
+                <td>Name</td><td>{{ $student->name}}</td></tr>
+            <tr><td>Batch</td><td>{{ $student->batch}}</td>
+            <td>Sex</td><td>{{ $student->sex}}</td></tr>
+            <tr><td>Email</td><td>{{ $student->email}}</td>
+            <td>Address</td><td>{{ $student->address}}</td></tr>
+        </table>
 
         <div class="btn-group pull-right">
             <button class="btn btn-primary"
@@ -38,7 +33,7 @@
         </div>
         <h2>Activities</h2>
 		<div class="activities-view">
-			<table class="table">
+			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th>Activity</th>
