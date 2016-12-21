@@ -199,14 +199,15 @@ $(document).ready(function() {
         activityData.activity_type = 'sport';
         activityData.student_id = STUDENT_ID;    //global var assigned by php
 
-        $.ajax({
-            type: 'POST',
-            url: '/activities',
-            data: JSON.stringify(activityData),
-            contentType: 'application/json',
-            dataType: 'JSON',
-            complete: completeActivityAddition
-        });
+        alert(JSON.stringify(activityData));
+        // $.ajax({
+        //     type: 'POST',
+        //     url: '/activities',
+        //     data: JSON.stringify(activityData),
+        //     contentType: 'application/json',
+        //     dataType: 'JSON',
+        //     complete: completeActivityAddition
+        // });
 
         $('input, textarea').val("");
         $awardFields.empty();

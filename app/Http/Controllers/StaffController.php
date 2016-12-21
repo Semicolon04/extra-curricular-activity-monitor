@@ -61,8 +61,16 @@ class StaffController extends Controller
     }
     public function show($id)
     {
+        $sql = "SELECT activity_types.activity_type FROM "
+            . "staff_type JOIN activity_types "
+            . "ON staff_type.type_id=activity_types.id "
+            . "WHERE staff_type.staff_id = ?";
+        $types = DB::select($sql, [$id]);
+        $types = array_map(function($t) {
+            return $t->activity_type;
+        }, $types);
         $staff = DB::select("SELECT * FROM staff WHERE id = ?", [$id])[0];
-        return view('staff.show', ['staff' => $staff]);
+        return view('staff.show', ['staff' => $staff, 'types' => $types]);
     }
     public function edit($id)
     {
@@ -109,5 +117,17 @@ class StaffController extends Controller
     public function destroy($id)
     {
         DB::delete("DELETE FROM staff WHERE id = ?", [$id]);
+    }
+    public function showActivitesToValidate() {
+        $id = '111111';         // get from the logged in user
+        $sql = "SELECT activity_types.activity_type FROM "
+            . "staff_type JOIN activity_types "
+            . "ON staff_type.type_id=activity_types.id "
+            . "WHERE staff_type.staff_id = ?";
+        $types = DB::select($sql, [$id]);
+        $types = array_map(function($t) {
+            return $t->activity_type;
+        }, $types);
+        return view('staff.validations', ['types'=> $types]);
     }
 }

@@ -50,12 +50,14 @@ Route::get('/logout',function(){
 Route::resource('students', 'StudentController');
 Route::resource('staff', 'StaffController');
 
+Route::get('validate', 'StaffController@showActivitesToValidate');
+
 Route::post('activities', 'ActivityController@storeActivity');
 Route::patch('activities/{activity_id}','ActivityController@updateActivity');
 Route::delete('activities/{activity_id}', 'ActivityController@deleteActivity');
 
 Route::get('activities/all/{student_id}', 'ActivityController@getStudentsActivities');
 Route::get('activity/{activity_id}', 'ActivityController@getCompleteActivityDetails');
-// Route::get('activities/unvalidated/{type}', '');
-//
-// Route::post('activities/validate/{activity_id}', '');
+
+Route::get('activities/unvalidated/{types}', 'ActivityController@getUnvalidatedActivities');
+Route::post('activities/validate/{activity_id}', 'ActivityController@validateActivity');
