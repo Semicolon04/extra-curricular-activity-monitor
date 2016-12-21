@@ -30,11 +30,13 @@
                 <label>Activity types</label>
                 <div class="form-control">
                 <div class="checkbox-inline"><label><input type="checkbox"
-                    name="clubs">Clubs</label></div>
+                    name="club">Clubs</label></div>
                 <div class="checkbox-inline"><label><input type="checkbox"
-                    name="competitions">Competitions</label></div>
+                    name="competition">Competitions</label></div>
                 <div class="checkbox-inline"><label><input type="checkbox"
-                    name="sports">Sports</label></div>
+                    name="sport">Sports</label></div>
+                <div class="checkbox-inline"><label><input type="checkbox"
+                    name="other">Others</label></div>
                 </div>
             </div>
 
