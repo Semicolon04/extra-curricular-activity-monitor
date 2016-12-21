@@ -10,6 +10,8 @@ use Log;
 class ActivityController extends Controller
 {
     public function storeActivity(Request $request) {
+      DB::beginTransaction();
+      try{
         $input_data = $request->json()->all();
         Log::info($input_data);
         $sql = "INSERT INTO activities"
@@ -29,6 +31,8 @@ class ActivityController extends Controller
                 $award['organization']];
             DB::insert($sql, $values);
         }
+
+
 
         if ($activity_type == 'club')
         {
@@ -71,6 +75,12 @@ class ActivityController extends Controller
                 DB::insert($sql, $values);
             }
         }
+        DB::commit();
+      }
+      catch (\Exception $e) {
+        DB::rollback();
+    // something went wrong
+  }
         return response()->json(['message' => 'updated sucessfully']);
     }
     public function updateActivity(Request $request, $activity_id) {
