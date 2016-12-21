@@ -72,6 +72,7 @@
 @section('scripts')
 <script>
 	var STUDENT_ID = '{{$_SESSION["login_user"]}}';
+    TOKEN = '{{csrf_token()}}';
 	function refresh_list() {
 		$('.activities-view').find('tbody').empty();
 		$.get('/activities/all/' + STUDENT_ID, function(data, status) {

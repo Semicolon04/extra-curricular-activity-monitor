@@ -1,7 +1,6 @@
 function refresh_list() {
     $('.activities-view').find('tbody').empty();
     $.get('/activities/unvalidated/' + STAFF_TYPES.join(','), function(data, status) {
-        data = JSON.parse(data.responseText);
         console.log(data);
         data.forEach(function(d) {
             $tr = $('<tr><td>' + d.title +'</td><td>' + d.year +'</td><td>'
@@ -89,7 +88,8 @@ $(document).ready(function() {
                     url: '/activities/validate/' + id,
                     data: JSON.stringify({
                         validated_by: staff_id,
-                        points: points
+                        points: points,
+                        _token: TOKEN
                     }),
                     contentType: 'application/json',
                     dataType: 'JSON',

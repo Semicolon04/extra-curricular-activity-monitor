@@ -60,5 +60,8 @@
 @endsection
 
 @section('scripts')
+<script>
+TOKEN = '{{csrf_token()}}';
+</script>
 <script src="scripts/search_activities_page.js"></script>
 @endsection

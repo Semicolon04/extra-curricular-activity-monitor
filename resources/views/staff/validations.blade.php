@@ -45,6 +45,7 @@
         '{{$type}}',
         @endforeach
     ];
+    TOKEN = '{{csrf_token()}}';
 </script>
 <script src="scripts/staff_validation_page.js"></script>
 @endsection

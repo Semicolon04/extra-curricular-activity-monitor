@@ -77,7 +77,8 @@ $(document).ready(function() {
         });
         activityData.activity_type = 'other';
         activityData.student_id = STUDENT_ID;    //global var assigned by php
-
+        activityData._token = TOKEN;
+        
         $.ajax({
             type: 'POST',
             url: '/activities',
@@ -120,7 +121,7 @@ $(document).ready(function() {
         });
         activityData.activity_type = 'club';
         activityData.student_id = STUDENT_ID;    //global var assigned by php
-
+        activityData._token = TOKEN;
         $.ajax({
             type: 'POST',
             url: '/activities',
@@ -156,7 +157,7 @@ $(document).ready(function() {
         });
         activityData.activity_type = 'competition';
         activityData.student_id = STUDENT_ID;    //global var assigned by php
-
+        activityData._token = TOKEN;
         $.ajax({
             type: 'POST',
             url: '/activities',
@@ -198,7 +199,7 @@ $(document).ready(function() {
         });
         activityData.activity_type = 'sport';
         activityData.student_id = STUDENT_ID;    //global var assigned by php
-
+        activityData._token = TOKEN;
         // alert(JSON.stringify(activityData));
         $.ajax({
             type: 'POST',
