@@ -41,7 +41,7 @@ class StudentController extends Controller
         $values2 = [$request->id , 'qwerty','students'];
         DB::insert($sql2,$values2);
 
-        return redirect()->route('students.show', ['id' => $request->id]);
+        return redirect('/');
     }
 
     public function show($id)
