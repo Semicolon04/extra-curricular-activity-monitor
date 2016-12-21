@@ -32,6 +32,13 @@ class StaffController extends Controller
             $request->email];
         DB::insert($sql, $values);
 
+
+        $sql2 = "INSERT INTO users (id, password,type)"
+            . "VALUES (?, ?, ?)";
+
+        $values2 = [$request->id , 'qwerty','staff'];
+        DB::insert($sql2,$values2);
+
         // TODO: Populate staff_type table based on checkbox inputs
         if ($request->has('club')) {
             DB::insert("INSERT into staff_type (staff_id, type_id) VALUES (?, ?)",

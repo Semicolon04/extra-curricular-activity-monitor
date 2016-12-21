@@ -33,9 +33,14 @@ class StudentController extends Controller
         ]);
         $sql = "INSERT INTO students (id, name, batch, sex, email, address)"
             . "VALUES (?, ?, ?, ?, ?, ?)";
+        $sql2 = "INSERT INTO users (id, password, type)"
+            . "VALUES (?, ? , ?)";
         $values = [$request->id, $request->name, $request->batch,
             $request->sex, $request->email, $request->address];
         DB::insert($sql, $values);
+        $values2 = [$request->id , 'qwerty','students'];
+        DB::insert($sql2,$values2);
+
         return redirect()->route('students.show', ['id' => $request->id]);
     }
 

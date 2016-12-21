@@ -1,5 +1,8 @@
 <?php
-session_start();
+    if(!isset($_SESSION))
+    {
+        session_start();
+    }
 ?>
 @extends('master')
 
@@ -68,7 +71,7 @@ session_start();
 
 @section('scripts')
 <script>
-	var STUDENT_ID = $_SESSION["login_user"]; 
+	var STUDENT_ID = '{{$_SESSION["login_user"]}}';
 	function refresh_list() {
 		$('.activities-view').find('tbody').empty();
 		$.get('/activities/all/' + STUDENT_ID, function(data, status) {

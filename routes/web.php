@@ -1,7 +1,5 @@
 <?php
-
-
-// use DB;
+session_start();
 
 use Illuminate\Http\Request;
 /*
@@ -21,11 +19,19 @@ Route::get('/', function () {
 
 Route::post('/login', function (Request $request) {
 
-  $user = DB::select('SELECT * FROM students WHERE id = ?', [$request->username]);
+  $user = DB::select('SELECT * FROM users WHERE id = '. "'".[$request->username][0]."'". ' and password ='. "'" .[$request->password][0]."'");
 	if ($user != null) {
     $user = $user[0];
     $_SESSION["login_user"] = $user->id;
+    $_SESSION["login_type"] = $user->type;
+    if(((string)$_SESSION["login_type"])=="students"){
 		return redirect('students/'.$user->id);
+    }
+    elseif (((string)$_SESSION["login_type"]) =='staff') {
+      	return redirect('staff/'.$user->id);
+    }
+
+    var_dump([$user->type][0]);
 	} else {
 		var_dump('A user tried to log in as '. $request->username);
     return response()->json(['message' => 'A user tried to log in as '. $request->username]);

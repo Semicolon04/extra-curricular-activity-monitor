@@ -40,8 +40,6 @@ class ActivityController extends Controller
             DB::insert($sql, $values);
         }
 
-
-
         if ($activity_type == 'club')
         {
             $sql = "INSERT INTO club_activities (activity_id, club_name," .
@@ -180,7 +178,7 @@ class ActivityController extends Controller
             [$activity_id]);
         DB::delete("DELETE FROM sports_activities WHERE activity_id = ?",
             [$activity_id]);
-        DB::delete("DELETE FROM sports_events WHERE activity_id = ?",
+        DB::delete("DELETE FROM sport_events WHERE activity_id = ?",
             [$activity_id]);
         DB::delete("DELETE FROM activities WHERE id = ?", [$activity_id]);
         DB::commit();
