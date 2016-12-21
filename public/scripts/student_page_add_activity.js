@@ -20,6 +20,14 @@ var eventForm = '<div class="container"><div class="form-group col-xs-5">' +
 '<input type="text" class="form-control input-sm" name="place"></div>' +
 '<a class="col-xs-1 remove-event"><br>remove</a></div>';
 
+function completeActivityAddition(data, status) {
+    if (status == 'success') {
+        $('.modal').modal("hide");
+        refresh_list();
+    } else {
+        alert(JSON.stringify(data.responseJSON));
+    }
+}
 function reload_activities() {
     $.get('/activities/all/' + STUDENT_ID, function(data, status) {
         //$('.activities-view').text(JSON.stringify(data, null, 10));
@@ -76,11 +84,7 @@ $(document).ready(function() {
             data: JSON.stringify(activityData),
             contentType: 'application/json',
             dataType: 'JSON',
-            complete: function(data, status) {
-                alert(JSON.stringify(data));
-                alert(JSON.stringify(status));
-                reload_activities();
-            }
+            complete: completeActivityAddition
         });
         //alert(JSON.stringify(activityData));
 
@@ -123,11 +127,7 @@ $(document).ready(function() {
             data: JSON.stringify(activityData),
             contentType: 'application/json',
             dataType: 'JSON',
-            complete: function(data, status) {
-                alert(JSON.stringify(data));
-                alert(JSON.stringify(status));
-                reload_activities();
-            }
+            complete: completeActivityAddition
         });
 
         $('input, textarea').val("");
@@ -163,11 +163,7 @@ $(document).ready(function() {
             data: JSON.stringify(activityData),
             contentType: 'application/json',
             dataType: 'JSON',
-            complete: function(data, status) {
-                alert(JSON.stringify(data));
-                alert(JSON.stringify(status));
-                reload_activities();
-            }
+            complete: completeActivityAddition
         });
 
         $('input, textarea').val("");
@@ -209,11 +205,7 @@ $(document).ready(function() {
             data: JSON.stringify(activityData),
             contentType: 'application/json',
             dataType: 'JSON',
-            complete: function(data, status) {
-                alert(JSON.stringify(data));
-                alert(JSON.stringify(status));
-                reload_activities();
-            }
+            complete: completeActivityAddition
         });
 
         $('input, textarea').val("");

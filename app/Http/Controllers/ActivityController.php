@@ -11,7 +11,10 @@ class ActivityController extends Controller
 {
     public function storeActivity(Request $request) {
         $input_data = $request->json()->all();
-        Log::info($input_data);
+        $this->validate($request, [
+            'title' => 'required'
+        ]);
+        DB::beginTransaction();
         $sql = "INSERT INTO activities"
             . " (title, description, year, student_id, activity_type)"
             . " VALUES (?, ?, ?, ?, ?)";
@@ -71,6 +74,7 @@ class ActivityController extends Controller
                 DB::insert($sql, $values);
             }
         }
+        DB::commit();
         return response()->json(['message' => 'updated sucessfully']);
     }
     public function updateActivity(Request $request, $activity_id) {

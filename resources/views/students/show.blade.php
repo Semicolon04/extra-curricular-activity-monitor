@@ -71,6 +71,19 @@
 @section('scripts')
 <script>
 	var STUDENT_ID = '140592C'; // hardcoded for now
+	function refresh_list() {
+		$('.activities-view').find('tbody').empty();
+		$.get('/activities/all/' + STUDENT_ID, function(data, status) {
+	        data.forEach(function(d) {
+	            //if (d.points == 'null') continue;
+	            $tr = $('<tr><td>' + d.title +'</td><td>' + d.year +'</td><td>'
+	                + d.activity_type +'</td><td>'+ d.points +'</td>'
+	                + '<td><a class="details">Details' +
+	                '<span hidden="true">' + d.id + '</span></a></td></tr>');
+	            $('.activities-view').find('tbody').prepend($tr);
+	        });
+	    });
+	}
 </script>
 <script src="/scripts/student_page_add_activity.js"></script>
 <script src="/scripts/student_page_view_activities.js"></script>

@@ -1,14 +1,7 @@
+
+
 $(document).ready(function() {
-    $.get('/activities/all/' + STUDENT_ID, function(data, status) {
-        data.forEach(function(d) {
-            //if (d.points == 'null') continue;
-            $tr = $('<tr><td>' + d.title +'</td><td>' + d.year +'</td><td>'
-                + d.activity_type +'</td><td>'+ d.points +'</td>'
-                + '<td><a class="details">Details' +
-                '<span hidden="true">' + d.id + '</span></a></td></tr>');
-            $('.activities-view').find('tbody').append($tr);
-        });
-    });
+    refresh_list();
 
     $('.activities-view').on('click', 'a.details', function() {
         var id = $(this).find("span[hidden='true']").text();
