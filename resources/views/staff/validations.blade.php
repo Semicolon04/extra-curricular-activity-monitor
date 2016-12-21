@@ -1,5 +1,32 @@
 @extends('master')
+
 @section('content')
+<div class="container">
+    <div class="col-md-offset-1 col-md-10">
+        <h2>Activities that need to be validated</h2>
+
+		<div class="activities-view">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Activity</th>
+						<th>Year</th>
+						<th>Type</th>
+						<th>Points</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- jquery adds rows here -->
+				</tbody>
+			</table>
+		</div>
+    </div>
+</div>
+@include('students.partials.showactivitymodal')
+@include('students.partials.showclubactivitymodal')
+@include('students.partials.showcompetitionmodal')
+@include('students.partials.showsportsmodal')
 @endsection
 
 @section('scripts')

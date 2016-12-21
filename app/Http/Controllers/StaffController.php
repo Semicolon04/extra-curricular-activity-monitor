@@ -111,4 +111,7 @@ class StaffController extends Controller
     {
         DB::delete("DELETE FROM staff WHERE id = ?", [$id]);
     }
+    public function showActivitesToValidate() {
+        return view('staff.validations');
+    }
 }

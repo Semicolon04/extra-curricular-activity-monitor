@@ -44,6 +44,8 @@ Route::get('/logout',function(){
 Route::resource('students', 'StudentController');
 Route::resource('staff', 'StaffController');
 
+Route::get('validate', 'StaffController@showActivitesToValidate');
+
 Route::post('activities', 'ActivityController@storeActivity');
 Route::patch('activities/{activity_id}','ActivityController@updateActivity');
 Route::delete('activities/{activity_id}', 'ActivityController@deleteActivity');
