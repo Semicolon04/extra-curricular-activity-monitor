@@ -1,5 +1,7 @@
 <?php
-use DB;
+
+
+// use DB;
 
 use Illuminate\Http\Request;
 /*
