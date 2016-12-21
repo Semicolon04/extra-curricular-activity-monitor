@@ -260,8 +260,12 @@ class ActivityController extends Controller
         $categories = implode(',', $categories);
         $year = $input_data['year'];
         $title = $input_data['title'];
-        $sql = "SELECT * FROM activities WHERE title like '%$title%' "
-            . "AND year like '%$year%' type in ($categories)";
+        $sql = "SELECT a.id, a.points, a.title, a.activity_type, a.year, s.name "
+            . "FROM activities AS a JOIN students AS s "
+            . "ON a.student_id = s.id "
+            . "WHERE a.title like '%$title%' "
+            . "AND a.year like '%$year%' "
+            . "AND a.activity_type in ($categories)";
         $results = DB::select($sql);
         return response()->json($results);
     }

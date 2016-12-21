@@ -1,10 +1,12 @@
 function refresh_list() {
     $('.activities-view').find('tbody').empty();
     $.get('/activities/unvalidated/' + STAFF_TYPES.join(','), function(data, status) {
+        data = JSON.parse(data.responseText);
+        console.log(data);
         data.forEach(function(d) {
             $tr = $('<tr><td>' + d.title +'</td><td>' + d.year +'</td><td>'
-                + d.activity_type +'</td><td>'+ d.student_id +'</td>'
-                + '<td><a class="details">Details' +
+                + d.activity_type +'</td><td>'+ d.points +'</td>'
+                + '<td>'+d.name+'</td><td><a class="details">Details' +
                 '<span hidden="true">' + d.id + '</span></a></td></tr>');
             $('.activities-view').find('tbody').prepend($tr);
         });

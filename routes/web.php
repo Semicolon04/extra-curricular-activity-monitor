@@ -65,4 +65,4 @@ Route::post('activities/validate/{activity_id}', 'ActivityController@validateAct
 Route::get('points/{student_id}', 'ActivityController@getTotalPoints');
 
 Route::get('search', 'StaffController@showSearch');
-Route::get('search/{query}', 'ActivityController@search');
+Route::post('activities/search', 'ActivityController@search');
