@@ -112,6 +112,15 @@ class StaffController extends Controller
         DB::delete("DELETE FROM staff WHERE id = ?", [$id]);
     }
     public function showActivitesToValidate() {
-        return view('staff.validations');
+        $id = '111111';         // get from the logged in user
+        $sql = "SELECT activity_types.activity_type FROM "
+            . "staff_type JOIN activity_types "
+            . "ON staff_type.type_id=activity_types.id "
+            . "WHERE staff_type.staff_id = ?";
+        $types = DB::select($sql, [$id]);
+        $types = array_map(function($t) {
+            return $t->activity_type;
+        }, $types);
+        return view('staff.validations', ['types'=> $types]);
     }
 }

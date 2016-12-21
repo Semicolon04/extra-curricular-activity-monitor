@@ -4,7 +4,7 @@
 <div class="container">
     <div class="col-md-offset-1 col-md-10">
         <h2>Activities that need to be validated</h2>
-
+        <br><br>
 		<div class="activities-view">
 			<table class="table table-striped">
 				<thead>
@@ -12,7 +12,7 @@
 						<th>Activity</th>
 						<th>Year</th>
 						<th>Type</th>
-						<th>Points</th>
+						<th>Student ID</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -32,6 +32,11 @@
 @section('scripts')
 <script>
     STAFF_ID = {{'111111'}};
+    STAFF_TYPES = [
+        @foreach($types as $type)
+        '{{$type}}',
+        @endforeach
+    ];
 </script>
 <script src="scripts/staff_validation_page.js"></script>
 @endsection

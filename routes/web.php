@@ -52,6 +52,6 @@ Route::delete('activities/{activity_id}', 'ActivityController@deleteActivity');
 
 Route::get('activities/all/{student_id}', 'ActivityController@getStudentsActivities');
 Route::get('activity/{activity_id}', 'ActivityController@getCompleteActivityDetails');
-// Route::get('activities/unvalidated/{type}', '');
-//
-// Route::post('activities/validate/{activity_id}', '');
+
+Route::get('activities/unvalidated/{types}', 'ActivityController@getUnvalidatedActivities');
+Route::post('activities/validate/{activity_id}', 'ActivityController@validateActivity');

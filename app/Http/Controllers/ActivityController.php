@@ -84,11 +84,10 @@ class ActivityController extends Controller
             }
         }
         DB::commit();
-      }
-      catch (Exception $e) {
-        DB::rollback();
-    // something went wrong
-  }
+        } catch (Exception $e) {
+          DB::rollback();
+          // something went wrong
+        }
         return response()->json(['message' => 'updated sucessfully']);
     }
     public function updateActivity(Request $request, $activity_id) {
@@ -180,18 +179,11 @@ class ActivityController extends Controller
             [$activity_id]);
         DB::delete("DELETE FROM sports_activities WHERE activity_id = ?",
             [$activity_id]);
-        DB::delete("DELETE FROM sports_events WHERE activity_id = ?",
+        DB::delete("DELETE FROM sport_events WHERE activity_id = ?",
             [$activity_id]);
         DB::delete("DELETE FROM activities WHERE id = ?", [$activity_id]);
         DB::commit();
         return response()->json(['message' => 'deleted sucessfully']);
-    }
-    public function validateActivity(Request $request, $activity_id) {
-        $input_data = $request->json()->all();
-        $sql = "UPDATE activities SET validated_by = ?, points = ?";
-        $values = [$input_data['validated_by'], $input_data['points']];
-        // TODO: get validated_by from logged in user
-        DB::update($sql, $values);
     }
 
     public function getStudentsActivities($student_id) {
@@ -232,5 +224,29 @@ class ActivityController extends Controller
         $sql = "SELECT award_name, organization, year FROM awards WHERE activity_id = ?";
         $result['awards'] = DB::select($sql, [$activity_id]);
         return response()->json($result);
+    }
+
+    public function validateActivity(Request $request, $activity_id) {
+        $input_data = $request->json()->all();
+        $sql = "UPDATE activities SET validated_by = ?, points = ?"
+            . " WHERE id = ?";
+        $values = [$input_data['validated_by'], $input_data['points'], $activity_id];
+
+        DB::beginTransaction();
+        $n = DB::update($sql, $values);
+        DB::commit();
+        if ($n == 1) {
+            return response()->json(['message' => 'updated']);
+        } else {
+            return response()->json(['message' => 'update failed']);
+        }
+    }
+    public function getUnvalidatedActivities($types) {
+        $types = explode(',', $types);
+        $types = array_map(function($s) {return "'" . $s . "'";}, $types);
+        $types = implode(',', $types);
+        $sql = "SELECT * FROM activities WHERE validated_by IS NULL AND activity_type IN ($types)";
+        $data = DB::select($sql);
+        return response()->json($data);
     }
 }
