@@ -10,6 +10,10 @@
         </div>
         <div class="collapse navbar-collapse" id="nb">
             <ul class="nav navbar-nav">
+                @if($_SESSION['login_type'] == 'staff')
+                    <li><a href="/validate">Validate Activities</a></li>
+                    <li><a href="/search">Search Activities</a></li>
+                @endif
                 <!-- <li><a href="#">Item 1</a></li>
                 <li><a href="#">Item 2</a></li>
                 <li><a href="#">Item 3</a></li> -->

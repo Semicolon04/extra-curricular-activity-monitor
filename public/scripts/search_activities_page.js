@@ -28,7 +28,8 @@ function doSearch() {
         data: JSON.stringify({
             title: title,
             categories: categories,
-            year: year
+            year: year,
+            _token: TOKEN
         }),
         contentType: 'application/json',
         dataType: 'JSON',

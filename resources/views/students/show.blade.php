@@ -9,8 +9,7 @@
 @section('content')
 <div class="container">
 	<div class="col-md-offset-1 col-md-10">
-        <h1>{{$student->name}} <span class="total-points pull-right">
-            Total Points</span></h1>
+        <h1>{{$student->name}} <span class="total-points pull-right"></span></h1>
 
 		<br>
 		<h3>Student Details</h3>
