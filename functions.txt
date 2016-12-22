@@ -1,0 +1,24 @@
+drop table if exists total;
+delimiter //
+create table total (id varchar(7)) returns integer
+begin
+declare tot integer;
+select sum(points) into tot from activities where student_id=id;
+return tot;
+end; //
+
+drop table if exists no_stud//
+create table no_stu (sport varchar(20)) returns integer
+begin
+declare num;
+select count(distinct student_id) into num from activities where activity_type=sport;
+return num;
+end; //
+
+drop if exists stud//
+create table stud () returns integer
+begin
+declare tot integer;
+select count(distinct student_id) into tot from activities;
+return tot;
+end; //
